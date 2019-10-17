@@ -5,10 +5,7 @@ import com.springboot.jpa.repository.AccountRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,7 +34,7 @@ public class AccountController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ApiOperation(value = "",notes = "",code = 200)
-    public Account getAccountById(@PathVariable("id") int id){
+    public Account getAccountById(@PathVariable("id") String id){
         return  accountRepository.findById(id).get();
     }
 
@@ -45,5 +42,21 @@ public class AccountController {
     public  Account getAccountByAccount(Account account){
         return accountRepository.findOne(account);
     }*/
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public String updateAccount(Account account){
+        Account account1 = accountRepository.saveAndFlush(account);
+        return account1.toString();
+    }
+
+    @RequestMapping(value = "/insert",method = RequestMethod.POST)
+    public String postAccount(@RequestParam(value = "name") String name,
+                              @RequestParam(value = "money") int money){
+        Account account = new Account();
+        account.setName(name);
+        account.setMoney(money);
+        Account account1 = accountRepository.save(account);
+        return  account1.toString();
+    }
 
 }

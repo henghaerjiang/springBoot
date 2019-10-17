@@ -2,6 +2,8 @@ package com.springboot.jpa.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GeneratorType;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,13 @@ import javax.persistence.Table;
 @Getter
 public class Account {
     @Id
-    @GeneratedValue
-    private  int id;
+    //generator 属性用于引用@GenericGenerator 注解 name 属性的值
+    @GeneratedValue(generator = "uuid")
+    //@GenericGenerator 注解是 hibernate 提供的。
+    //strategy 属性用于指定 hibernate 中提供的生成规则
+    //name 属性用于给使用的生成规则起个名称，以供 JPA 引用
+    @GenericGenerator(name="uuid",strategy="uuid")
+    private  String id;
     private  String name;
-    private  String money;
+    private  int money;
 }
