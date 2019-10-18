@@ -30,9 +30,9 @@ public class Swagger {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("springboot利用swagger构建api文档")
+                .title("springboot-jpa")
                 .description("")
-                .termsOfServiceUrl("http://blog.csdn.net/forezp")
+                .termsOfServiceUrl("")
                 .version("1.0")
                 .build();
     }
