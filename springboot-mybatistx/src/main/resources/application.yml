@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: springboot-mybatistx
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/springboot
+    username: weilinxi
+server:
+  port: 8080
